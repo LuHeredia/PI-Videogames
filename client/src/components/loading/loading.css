@@ -1,0 +1,15 @@
+.loading {
+    margin-top: 10%;
+    margin-left: 50%;
+    border: 16px solid #f3f3f3; /* Establece el borde */
+    border-top: 16px solid #038c73; /* Cambia el color de la parte superior */
+    border-radius: 50%; /*que sea un círculo */
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite; /* Establece la animación */
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

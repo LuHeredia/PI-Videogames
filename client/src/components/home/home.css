@@ -1,0 +1,65 @@
+#menu {
+margin-top: -3px;
+ margin-left: 25px;
+  position: fixed;
+  background-color: #038c73;
+  float: left;
+  padding: 1%;
+  border-radius: 20px;
+}
+#menu .logo img {
+  margin-top: 10px;
+  width: 150px;
+}
+
+#create {
+  margin: 25px 25px;
+}
+#create button {
+  margin: 5px;
+  margin-left: 1150px;
+}
+.home li {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+}
+.home li button {
+  margin-top: 8px;
+}
+.home button {
+  text-transform: uppercase;
+  background-color: #038c73;
+  position: relative;
+
+  padding: 10px 20px;
+  color: #fff;
+  transition: color 1s;
+  border-radius: 10px;
+}
+.home button:hover {
+  background-color: #02735e;
+}
+
+.conteiner {
+  padding: 1%;
+  list-style: none;
+}
+.conteiner li {
+  padding: 0%;
+  display: grid;
+}
+.conteiner select {
+  color: #fff;
+  display: grid;
+  font-size: medium;
+  text-transform: uppercase;
+  background-color: #038c73;
+  padding: 20px 25px;
+  transition: color 1s;
+}
+.conteiner select:hover {
+  background-color: #02735e;
+}
