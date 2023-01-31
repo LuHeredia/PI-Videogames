@@ -178,11 +178,13 @@ export default function VgCreated() {
         <div className="form-group">
           <label className="form-label-2">Genres: </label>
           <select onChange={(e) => handleSelect(e)}>
-            {genre.map((elem) => (
-              <option key={elem} value={elem.name}>
+            {genre?.map((elem) => {
+            return (
+              <option key={elem.id} value={elem.name}>
                 {elem.name}
               </option>
-            ))}
+            )
+})}
           </select>
         </div>
 
