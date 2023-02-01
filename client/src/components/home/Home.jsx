@@ -8,6 +8,7 @@ import {
   rating,
   filterByAbc,
   filterCreated,
+  update
 } from "../../actions";
 import Card from "../cards/Cards";
 import { Link } from "react-router-dom";
@@ -23,7 +24,8 @@ export default function Home() {
   //----estados locales----
   //currentPage(pagina actual), setCurrentPage(seteamos pag actual)
   //guardamos el estado local en una pagina actual y lo seteamos, comienza en 1 por que es la primera pag
-  const [currentPage, setCurrentPage] = useState(1);
+  /////////const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state)=>state.currentPage)
   //aqui decimos cuantos vg van a ir por pagina y seteamos (15 vg por pag)
   const [vgPerPage, setVgPerPage] = useState(15);
   //creamos una contante y vamos a guardar pagina actual por personaje por pagina
@@ -37,8 +39,8 @@ export default function Home() {
   //trae todos los generos
   const allGenre = useSelector((state) => state.allMyGenres);
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const paginado = (currentPage) => {
+    dispatch(update(currentPage));
   };
   //videogames
   useEffect(() => {
@@ -58,12 +60,12 @@ export default function Home() {
   //filtrado de generos
   function handleFilteredGenre(e) {
     dispatch(filterGamesByGenre(e.target.value));
-    setCurrentPage(1);
+    //setCurrentPage(1);
   }
   //rating
   function handleRating(e) {
     dispatch(rating(e.target.value));
-    setCurrentPage(1);
+   // setCurrentPage(1);
     setOrder(`${e.target.value}`);
   }
   //a-z ..z-a
@@ -73,17 +75,15 @@ export default function Home() {
       ? dispatch(filterByAbc) && setOrder(`ABC ${e.target.value}`)
       : dispatch(filterByAbc(e.target.value));
     setOrder(`ABC ${e.target.value}`);
-    setCurrentPage(1);
+//    setCurrentPage(1);
   }
   //creados en db o existentes
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-    setCurrentPage(1);
+//    setCurrentPage(1);
   }
-  useEffect(()=>{
-    setCurrentPage(1)
-  },[dispatch])
+
   
   return (
     <div className="home">

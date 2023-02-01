@@ -7,7 +7,7 @@ import "../detail/detail.css";
 export default function Detail(props) {
 
   const dispatch = useDispatch();
-
+  
   let regex = /(<([^>]+)>)/gi;
 
   useEffect(() => {
@@ -16,8 +16,10 @@ export default function Detail(props) {
   }, [dispatch]);
 
   const myGame = useSelector((state) => state.gameDetail);
-  console.log(myGame);
 
+
+  console.log(myGame);
+  
   return (
     <div>
       <div className="detail">
@@ -34,8 +36,10 @@ export default function Detail(props) {
         <div className="conteiner">
           <h2>Genre:</h2>
           <h3>
-          {myGame.createInDb ? myGame.genre.map((elem)=>elem.name) : myGame.genre + " "}
-          </h3>
+          {!myGame.createInDb
+            ? myGame.genre + " "
+            : myGame.genre.map((el) => el.name + " ")}
+            </h3>
           <h2>Platforms:</h2>
           <h3>{myGame.platform ? myGame.platforms : myGame.platforms + " "}</h3>
           <h2>Released:</h2>

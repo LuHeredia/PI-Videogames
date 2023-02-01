@@ -37,10 +37,10 @@ export function rating(payload) {
 
 export function getDetail(id) {
   return async function (dispatch) {
-    var json = await axios.get('http://localhost:3001/videogame/' + id);
+    var detail = await axios.get('http://localhost:3001/videogame/' + id);
     return dispatch({
       type: "GET_DETAIL",
-      payload: json.data,
+      payload: detail.data,
     });
   };
 }
@@ -59,11 +59,11 @@ export function filterCreated(payload) {
   };
 }
 //SEARCH NAME
-export function getNameVideogames(payload) {
+export function getNameVideogames(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/videogame?name=" + payload
+        "http://localhost:3001/videogame?name=" + name
       );
       return dispatch({
         type: "GET_NAME_VIDEOGAMES",
@@ -75,9 +75,15 @@ export function getNameVideogames(payload) {
   };
 }
 export function postVideogames(payload) {
-  return async function (dispatch) {
+  return async function () {
     const post = await axios.post("http://localhost:3001/videogame", payload);
     return post;
   };
+} 
+//para buscar un juego de otra pagina
+export function update(payload){
+  return{
+    type: 'UPDATE_PAG',
+    payload
+  }
 }
-

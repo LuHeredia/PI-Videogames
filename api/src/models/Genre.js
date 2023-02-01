@@ -12,7 +12,13 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false
     },
+    createInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   },{
     timestamps: false, // PARA ELIMINAR EL CREATEAT Y EL UPDATEAT DE LA TABLA DE DB
   });

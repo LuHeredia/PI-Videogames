@@ -15,12 +15,9 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        notNull: {
-          msg: "Please enter a videogame.",
-        },
       },
       released: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       rating: { 
         type: DataTypes.FLOAT,

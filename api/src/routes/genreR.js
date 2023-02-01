@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
     })
   );
   const allGenres = await Genre.findAll();
-  res.send(allGenres);
+  res.send(allGenres); 
 });
 
 module.exports = router;

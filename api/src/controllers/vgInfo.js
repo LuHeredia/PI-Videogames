@@ -28,7 +28,7 @@ const getApiInfo = async () => {
 };
 //DB
 const getDbInfo = async () => {
-  return await Videogame.findAll({
+  const dbData = await Videogame.findAll({
     include: {
       model: Genre,
       attributes: ["name"],
@@ -37,6 +37,7 @@ const getDbInfo = async () => {
       },
     },
   });
+  return dbData
 };
 //TODO (URL Y DB)
 const getAllInfo = async () => {

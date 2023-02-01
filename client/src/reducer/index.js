@@ -4,6 +4,7 @@ const initialState = {
   allMyGenres: [],
   gameDetail: [],
   platforms: [],
+  currentPage: 1,
 };
 
 function rootReducer(state = initialState, action) {
@@ -117,7 +118,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-
+    case "UPDATE_PAG":
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     default:
       return state;
   }
