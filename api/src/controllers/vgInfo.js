@@ -55,7 +55,7 @@ const getById = async(id)=>{
       const vgApiDetail = {
           id: detail.id,
           name: detail.name,
-          genre: detail.genre?.map((ele)=> ele.name),
+          genre: detail.genres?.map((ele)=> ele.name),
           released: detail.released,
           rating: detail.rating,
           platforms: detail.platforms?.map((ele)=>ele.platform.name),  

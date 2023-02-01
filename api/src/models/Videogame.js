@@ -17,11 +17,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       released: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
-      rating: { 
+      rating: {
         type: DataTypes.FLOAT,
-      }, 
+      },
       platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
@@ -34,8 +34,8 @@ module.exports = (sequelize) => {
       createInDb: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true
-      }
+        defaultValue: true,
+      },
     },
     {
       timestamps: false, // PARA ELIMINAR EL CREATEAT Y EL UPDATEAT DE LA TABLA DE DB

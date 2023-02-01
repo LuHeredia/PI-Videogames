@@ -56,4 +56,21 @@ router.post("/", async (req, res) => {
   
 });
 
+router.put("/:id", async (req,res,next)=>{
+  const id = req.params.id
+const videogame = req.body;
+return Videogame.update(videogame, {
+  where:{
+    id,
+  },
+}).then((updateVideogame)=>{
+res.send(updateVideogame)
+}).then((error)=> next(error))
+})
+
+
+
+router.delete("/:id", async (req,res)=>{
+  
+})
 module.exports = router;
