@@ -6,6 +6,7 @@ import "./vgCreate.css";
 export default function VgCreated() {
   const dispatch = useDispatch();
   const genre = useSelector((state) => state.allMyGenres);
+  const allGames =useSelector((state) => state.videogames)
   const history = useHistory();
   const [error, setError] = useState({});
   const [input, setInput] = useState({
@@ -61,23 +62,39 @@ export default function VgCreated() {
     });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    let crear = {
-      name: input.name,
-      description: input.description,
-      rating: input.rating,
-      released: input.released,
-      image: input.image,
-      platforms: input.platforms,
-      genre: input.genre,
-    };
-
-    dispatch(postVideogames(crear));
-
-    alert("VideoGame Created");
-    history.push("/home");
+  function handleSubmit(e){
+    e.preventDefault()
+    let noRepeat = allGames.filter((game) => game.name === input.name);
+if (noRepeat.length !== 0) {
+  alert(
+    "There is already a game with that name, please choose another one."
+  );
+} else {
+  let error = Object.keys(validate(input));
+  if (
+    error.length !== 0 ||
+    !input.genre.length ||
+    !input.platforms.length
+  ) {
+    alert("Please, fill in the fields correctly");
+    return;
+  } else {
+    dispatch(postVideogames(input));
+    alert("The game has been created!!")
+    setInput({
+      name: "",
+      image: "",
+      released: "",
+      description: "",
+      rating: "",
+      platforms: [],
+      genre: [],
+    });
   }
+  history.push("/home");
+}
+}
+
   let plataforms = [
     "PC",
     "PlayStation 5",
@@ -94,6 +111,9 @@ export default function VgCreated() {
     "Game Boy",
     "SEGA",
   ];
+
+
+
    function validate(input) {
     let error = {};
 

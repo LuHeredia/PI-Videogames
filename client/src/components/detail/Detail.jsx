@@ -3,27 +3,24 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../actions";
 import "../detail/detail.css";
+import Loading from "../loading/loading";
 
 export default function Detail(props) {
-
   const dispatch = useDispatch();
-  
+
   let regex = /(<([^>]+)>)/gi;
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
-    
   }, [dispatch]);
 
   const myGame = useSelector((state) => state.gameDetail);
 
-
   console.log(myGame);
-  
+
   return (
     <div>
       <div className="detail">
-        
         <h1>{myGame.name}</h1>
         <div>
           <img
@@ -36,10 +33,10 @@ export default function Detail(props) {
         <div className="conteiner">
           <h2>Genre:</h2>
           <h3>
-          {!myGame.createInDb
-            ? myGame.genre + " "
-            : myGame.genres.map((el) => el.name + " ")}
-            </h3>
+            {!myGame.createInDb
+              ? myGame.genre + " "
+              : myGame.genres.map((el) => el.name + " ")}
+          </h3>
           <h2>Platforms:</h2>
           <h3>{myGame.platform ? myGame.platforms : myGame.platforms + " "}</h3>
           <h2>Released:</h2>
@@ -54,6 +51,7 @@ export default function Detail(props) {
           </h3>
         </div>
       </div>
+
       <Link to="/home">
         <button className="button">Return</button>
       </Link>
