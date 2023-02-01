@@ -38,7 +38,7 @@ export default function Detail(props) {
           <h3>
           {!myGame.createInDb
             ? myGame.genre + " "
-            : myGame.genre.map((el) => el.name + " ")}
+            : myGame.genres.map((el) => el.name + " ")}
             </h3>
           <h2>Platforms:</h2>
           <h3>{myGame.platform ? myGame.platforms : myGame.platforms + " "}</h3>
