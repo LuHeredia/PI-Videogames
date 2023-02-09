@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../actions";
 import "../detail/detail.css";
-import Loading from "../loading/loading";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -11,6 +10,7 @@ export default function Detail(props) {
   let regex = /(<([^>]+)>)/gi;
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
     dispatch(getDetail(props.match.params.id));
   }, [dispatch]);
 

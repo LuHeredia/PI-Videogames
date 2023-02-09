@@ -6,6 +6,7 @@ import VgCreated from "./components/post/VgCreate";
 import Detail from "./components/detail/Detail";
 import NotFound from "./components/notFound/NotFound";
 
+
 function App() {
   return (
     <BrowserRouter>

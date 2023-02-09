@@ -207,8 +207,6 @@ if (noRepeat.length !== 0) {
 })}
           </select>
         </div>
-
-
         <div className="form-group">
           {input.genre.map((elem) => {
             return (

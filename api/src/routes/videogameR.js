@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
       ) => ele.name.toLowerCase().includes(name.toLowerCase()) //lo pone en minusculas y se fija en el filtrado elementos que contengan el mismo nombre
     );
     gamesName.length //si hay algo en gamesName
-      ? res.status(200).send(gamesName) //lo consologea
+      ? res.status(200).send(gamesName) //lo consologea en 200
       : res
           .status(400) //y si no ya tu sabe
           .send("There is no games that matches with your search.");
@@ -25,9 +25,9 @@ router.get("/", async (req, res) => {
 });
 // AQUI TENEMOS /VIDEOGAMES/ID
 router.get("/:id", async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id; //guarda en id los id requeridos por parametros
   if (id) {
-    const gameId = await getById(id);
+    const gameId = await getById(id); 
     res.status(200).send(gameId);
   } else {
     res.status(400).send("The game ID was not found");
@@ -56,21 +56,4 @@ router.post("/", async (req, res) => {
   
 });
 
-router.put("/:id", async (req,res,next)=>{
-  const id = req.params.id
-const videogame = req.body;
-return Videogame.update(videogame, {
-  where:{
-    id,
-  },
-}).then((updateVideogame)=>{
-res.send(updateVideogame)
-}).then((error)=> next(error))
-})
-
-
-
-router.delete("/:id", async (req,res)=>{
-  
-})
 module.exports = router;

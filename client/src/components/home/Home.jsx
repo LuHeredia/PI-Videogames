@@ -8,7 +8,7 @@ import {
   rating,
   filterByAbc,
   filterCreated,
-  update
+  update,
 } from "../../actions";
 import Card from "../cards/Cards";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ export default function Home() {
   //currentPage(pagina actual), setCurrentPage(seteamos pag actual)
   //guardamos el estado local en una pagina actual y lo seteamos, comienza en 1 por que es la primera pag
   /////////const [currentPage, setCurrentPage] = useState(1);
-  const currentPage = useSelector((state)=>state.currentPage)
+  const currentPage = useSelector((state) => state.currentPage);
   //aqui decimos cuantos vg van a ir por pagina y seteamos (15 vg por pag)
   const [vgPerPage, setVgPerPage] = useState(15);
   //creamos una contante y vamos a guardar pagina actual por personaje por pagina
@@ -44,10 +44,12 @@ export default function Home() {
   };
   //videogames
   useEffect(() => {
-    //este dispatch es lo mismo que hacer el mapDispatch
     dispatch(getVideogames());
   }, [dispatch]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  });
   //videogames
   function handleClick(e) {
     e.preventDefault();
@@ -65,7 +67,7 @@ export default function Home() {
   //rating
   function handleRating(e) {
     dispatch(rating(e.target.value));
-   // setCurrentPage(1);
+    // setCurrentPage(1);
     setOrder(`${e.target.value}`);
   }
   //a-z ..z-a
@@ -75,16 +77,15 @@ export default function Home() {
       ? dispatch(filterByAbc) && setOrder(`ABC ${e.target.value}`)
       : dispatch(filterByAbc(e.target.value));
     setOrder(`ABC ${e.target.value}`);
-//    setCurrentPage(1);
+    //    setCurrentPage(1);
   }
   //creados en db o existentes
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-//    setCurrentPage(1);
+    //    setCurrentPage(1);
   }
 
-  
   return (
     <div className="home">
       <div id="menu">
@@ -138,31 +139,32 @@ export default function Home() {
         </Link>
       </div>
       <div>
-        {
-        currentVg.length === 0 ?
-        <p><Loading/></p>
-        : currentVg.map((elem) => {
-          return (
-            <fragment className="cards">
-              <Link to={"/videogame/" + elem.id}>
-                <Card
-                  image={elem.image}
-                  name={elem.name}
-                  rating={elem.rating}
-                  genre={elem.genre}
-                />
-              </Link>
-            </fragment>
-          );
-        } )
-        }
+        {currentVg.length === 0 ? (
+          <p>
+            <Loading />
+          </p>
+        ) : (
+          currentVg.map((elem) => {
+            return (
+              <fragment className="cards">
+                <Link to={"/videogame/" + elem.id}>
+                  <Card
+                    image={elem.image}
+                    name={elem.name}
+                    rating={elem.rating}
+                    genre={elem.genre}
+                  />
+                </Link>
+              </fragment>
+            );
+          })
+        )}
         <Paginado
           vgPerPage={vgPerPage}
           allVideogames={allVideogames.length}
           paginado={paginado}
         />
       </div>
-     
     </div>
   );
 }
